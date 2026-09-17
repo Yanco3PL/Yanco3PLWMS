@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { supabase } from "./supabaseClient";
+import Facturacion from "./Facturacion";
 
 const TIPOS = ["Bin Grande", "Bin Chico", "Pallet", "Caja SA Box"];
 const CANALES = ["Web/DTC", "Dealer/B2B", "FBA", "Kitting"];
@@ -239,7 +240,10 @@ export default function App() {
         <button className={`tab ${tab === "inventario" ? "active" : ""}`} onClick={() => setTab("inventario")}>Inventario</button>
         <button className={`tab ${tab === "recepcion" ? "active" : ""}`} onClick={() => setTab("recepcion")}>Recepción</button>
         <button className={`tab ${tab === "picking" ? "active" : ""}`} onClick={() => setTab("picking")}>Picking / Packing</button>
+        <button className={`tab ${tab === "facturacion" ? "active" : ""}`} onClick={() => setTab("facturacion")}>Facturación</button>
       </div>
+
+      {tab === "facturacion" && <Facturacion usuario={usuario} />}
 
       {tab === "inventario" && (
         <div className="table-wrap">
