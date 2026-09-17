@@ -120,7 +120,7 @@ export default function Facturacion({ usuario }) {
     setSaving(false);
   };
 
-  if (loading) return <p style={{ color: "#5B6672" }}>Cargando facturación…</p>;
+  if (loading) return <p style={{ color: "#626E8C" }}>Cargando facturación…</p>;
 
   const periodos = ["Todos", ...Array.from(new Set(facturas.map((f) => f.periodo))).sort().reverse()];
   const visibles = periodoFiltro === "Todos" ? facturas : facturas.filter((f) => f.periodo === periodoFiltro);
@@ -173,7 +173,7 @@ export default function Facturacion({ usuario }) {
 
       <div className="tab-toolbar" style={{ padding: "0 0 10px", justifyContent: "space-between" }}>
         <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-          <label style={{ fontSize: 13, color: "#5B6672" }}>
+          <label style={{ fontSize: 13, color: "#626E8C" }}>
             Tarifa fulfillment/unidad:
             <input className="input" style={{ width: 70, marginLeft: 6, display: "inline-block" }} type="number" min="0" step="0.1"
               value={tarifaFulfillment} onChange={(e) => actualizarTarifa(e.target.value)} />
@@ -220,14 +220,14 @@ export default function Facturacion({ usuario }) {
               );
             })}
             {visibles.length === 0 && (
-              <tr><td colSpan={8} style={{ textAlign: "center", color: "#8A93A0", padding: 24 }}>Sin facturas todavía. Pulsa "Generar/actualizar borradores del mes".</td></tr>
+              <tr><td colSpan={8} style={{ textAlign: "center", color: "#8791AD", padding: 24 }}>Sin facturas todavía. Pulsa "Generar/actualizar borradores del mes".</td></tr>
             )}
           </tbody>
         </table>
       </div>
 
       <h2 style={{ fontSize: 15, fontWeight: 600, margin: "22px 0 8px" }}>Concentración de clientes</h2>
-      <div style={{ background: "#fff", border: "1px solid #DDE3E7", borderRadius: 4, padding: 16 }}>
+      <div style={{ background: "#fff", border: "1px solid #E2E5EF", borderRadius: 4, padding: 16 }}>
         {enRiesgoConcentracion && (
           <div style={{ background: "#FBEAE8", border: "1px solid #E8B8B2", color: "#9A342A", fontSize: 12.5, padding: "8px 12px", borderRadius: 4, marginBottom: 14 }}>
             ⚠ {clienteAncla.cliente} representa {clienteAncla.pct.toFixed(0)}% de la facturación — por encima de la meta de mantenerse bajo 40%.
@@ -237,16 +237,16 @@ export default function Facturacion({ usuario }) {
           <div key={c.cliente} style={{ marginBottom: 10 }}>
             <div style={{ display: "flex", justifyContent: "space-between", fontSize: 13, marginBottom: 3 }}>
               <span style={{ fontWeight: 500 }}>{c.cliente}</span>
-              <span style={{ fontFamily: "'IBM Plex Mono', monospace", color: c.pct > 40 ? "#C24B3F" : "#5B6672" }}>{money(c.monto)} · {c.pct.toFixed(0)}%</span>
+              <span style={{ fontFamily: "'IBM Plex Mono', monospace", color: c.pct > 40 ? "#D6473C" : "#626E8C" }}>{money(c.monto)} · {c.pct.toFixed(0)}%</span>
             </div>
-            <div style={{ position: "relative", height: 8, background: "#EEF1F3", borderRadius: 4 }}>
-              <div style={{ height: 8, borderRadius: 4, width: `${Math.min(c.pct, 100)}%`, background: c.pct > 40 ? "#C24B3F" : "#1F6F8B" }} />
-              <div style={{ position: "absolute", left: "40%", top: -2, bottom: -2, width: 2, background: "#1B232C55" }} />
+            <div style={{ position: "relative", height: 8, background: "#F4F5FA", borderRadius: 4 }}>
+              <div style={{ height: 8, borderRadius: 4, width: `${Math.min(c.pct, 100)}%`, background: c.pct > 40 ? "#D6473C" : "#101B3D" }} />
+              <div style={{ position: "absolute", left: "40%", top: -2, bottom: -2, width: 2, background: "#14213D55" }} />
             </div>
           </div>
         ))}
-        {concentracion.length === 0 && <div style={{ fontSize: 13, color: "#8A93A0" }}>Sin facturas para calcular concentración todavía.</div>}
-        <div style={{ fontSize: 11, color: "#8A93A0", marginTop: 8 }}>La línea vertical marca el 40% — su meta es que ningún cliente la pase.</div>
+        {concentracion.length === 0 && <div style={{ fontSize: 13, color: "#8791AD" }}>Sin facturas para calcular concentración todavía.</div>}
+        <div style={{ fontSize: 11, color: "#8791AD", marginTop: 8 }}>La línea vertical marca el 40% — su meta es que ningún cliente la pase.</div>
       </div>
 
       <p className="footnote">Storage se recalcula de la ocupación real de bines cada vez que generas borradores. Fulfillment cuenta unidades de órdenes marcadas "Enviado" dentro del mes. Una vez que marcas "Enviada" o "Pagada", esos montos quedan congelados.</p>
