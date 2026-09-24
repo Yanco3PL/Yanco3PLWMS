@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { supabase } from "./supabaseClient";
 import Facturacion from "./Facturacion";
 import Dashboard from "./Dashboard";
+import EbayOrders from "./EbayOrders";
 
 const TIPOS = ["Bin Grande", "Bin Chico", "Pallet", "Caja SA Box"];
 const CANALES = ["Web/DTC", "Dealer/B2B", "FBA", "Kitting"];
@@ -243,10 +244,12 @@ export default function App() {
         <button className={`tab ${tab === "recepcion" ? "active" : ""}`} onClick={() => setTab("recepcion")}>Recepción</button>
         <button className={`tab ${tab === "picking" ? "active" : ""}`} onClick={() => setTab("picking")}>Picking / Packing</button>
         <button className={`tab ${tab === "facturacion" ? "active" : ""}`} onClick={() => setTab("facturacion")}>Facturación</button>
+        <button className={`tab ${tab === "ebay" ? "active" : ""}`} onClick={() => setTab("ebay")}>eBay</button>
       </div>
 
       {tab === "facturacion" && <Facturacion usuario={usuario} />}
       {tab === "dashboard" && <Dashboard />}
+      {tab === "ebay" && <EbayOrders />}
 
       {tab === "inventario" && (
         <div className="table-wrap">
